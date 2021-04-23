@@ -3,7 +3,6 @@ const path = require("path")
 
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const TerserPlugin = require("terser-webpack-plugin")
 
 /* -------- 预热线程 --------- */
 const threadLoader = require("thread-loader")
@@ -55,13 +54,14 @@ const webpackBaseConfig = {
             loader: "thread-loader",
             options: jsWorkerPool
           },
-          "babel-loader"
+          "babel-loader?cacheDirectory"
         ]
       },
       {
         test: /\.s[ac]ss$/,
         exclude: /node_modules/,
         use: [
+          "cache-loader",
           "style-loader",
           {
             loader: "thread-loader",
@@ -82,16 +82,7 @@ const webpackBaseConfig = {
       template: path.join(__dirname, "../public", "index.html"),
       filename: "index.html"
     })
-  ],
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        terserOptions: {}
-      })
-    ]
-  }
+  ]
 }
 
 
