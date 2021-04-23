@@ -1,14 +1,8 @@
 import React from "react"
 import ReactDom from "react-dom"
 
-// import Home from "./src/pages/home"
+import App from "@/app";
 
 import "@/styles/base.scss"
-
-class App extends React.Component{
-  render() {
-    return (<div>ceshi222111</div>)
-  }
-}
 
 ReactDom.render(<App />, document.getElementById("root"))
