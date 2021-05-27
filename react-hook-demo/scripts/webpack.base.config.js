@@ -34,10 +34,6 @@ threadLoader.warmup(cssWorkerPool, ["css-loader", "postcss-loader"])
 
 const webpackBaseConfig = {
   entry: path.join(__dirname, "../index.js"),
-  output: {
-    path: path.join(__dirname, "../dist"),
-    filename: "bundle.js"
-  },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".css", ".scss"],
     alias: {
@@ -82,6 +78,20 @@ const webpackBaseConfig = {
           },
           "style-loader",
           "css-loader"
+        ]
+      },
+      {
+        test: /\.(eot|woff2?|ttf|svg)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              name: "[name]-[hash:5].min.[ext]",
+              limit: 3000, // size <= 3000B, 改成5000B试试?
+              publicPath: "fonts/",
+              outputPath: "fonts/"
+            }
+          }
         ]
       }
     ]
