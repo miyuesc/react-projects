@@ -62,14 +62,26 @@ const webpackBaseConfig = {
         exclude: /node_modules/,
         use: [
           "cache-loader",
-          "style-loader",
           {
             loader: "thread-loader",
             options: cssWorkerPool
           },
+          "style-loader",
           "css-loader",
           "postcss-loader",
           "sass-loader"
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "cache-loader",
+          {
+            loader: "thread-loader",
+            options: cssWorkerPool
+          },
+          "style-loader",
+          "css-loader"
         ]
       }
     ]
