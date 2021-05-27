@@ -10,6 +10,7 @@ module.exports = {
     "plugin:react/recommended"
   ],
   "rules": {
+    "react/prop-types": 0,
     "max-len": [1, 120, 2, {"ignoreComments": true}],
     "no-var": 2,
     // 不允许在块中function、var的申明
